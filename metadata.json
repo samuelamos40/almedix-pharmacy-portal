@@ -1,0 +1,6 @@
+{
+  "name": "HexaCare Pharmacy & Health Portal",
+  "description": "Comprehensive pharmacy store, telehealth consultations, inventory stock management, supplier payables tracking, and data analyst extraction suite in purple and white.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
