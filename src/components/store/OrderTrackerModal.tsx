@@ -28,15 +28,19 @@ export const OrderTrackerModal: React.FC<OrderTrackerModalProps> = ({
   const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
-    if (initialOrderNumber) {
-      setSearchTerm(initialOrderNumber);
-      const found = orders.find(o => o.orderNumber.toLowerCase() === initialOrderNumber.toLowerCase());
-      if (found) {
-        setSearchedOrder(found);
+    if (isOpen) {
+      if (initialOrderNumber) {
+        setSearchTerm(initialOrderNumber);
+        const found = orders.find(o => o.orderNumber.toLowerCase() === initialOrderNumber.toLowerCase());
+        setSearchedOrder(found || null);
         setHasSearched(true);
+      } else {
+        setSearchTerm('');
+        setSearchedOrder(null);
+        setHasSearched(false);
       }
     }
-  }, [initialOrderNumber, orders]);
+  }, [isOpen, initialOrderNumber, orders]);
 
   if (!isOpen) return null;
 

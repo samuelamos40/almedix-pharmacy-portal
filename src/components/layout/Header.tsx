@@ -95,7 +95,14 @@ export const Header: React.FC<HeaderProps> = ({
               Doctor Consultations
             </button>
             <button
-              onClick={() => setCurrentPage('prescriptions')}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  alert("Please login or create a patient account to upload a prescription.");
+                  onOpenLogin('patient', 'login');
+                } else {
+                  setCurrentPage('prescriptions');
+                }
+              }}
               className={`hover:text-blue-900 transition-colors cursor-pointer ${
                 currentPage === 'prescriptions' ? 'text-blue-900 font-bold border-b-2 border-blue-700 pb-1' : 'text-slate-600'
               }`}
@@ -235,7 +242,14 @@ export const Header: React.FC<HeaderProps> = ({
               Consultations
             </button>
             <button
-              onClick={() => setCurrentPage('prescriptions')}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  alert("Please login or create a patient account to upload a prescription.");
+                  onOpenLogin('patient', 'login');
+                } else {
+                  setCurrentPage('prescriptions');
+                }
+              }}
               className={`whitespace-nowrap ${currentPage === 'prescriptions' ? 'font-bold text-blue-900' : ''}`}
             >
               Prescription Upload

@@ -915,7 +915,7 @@ export const PatientAccountPage: React.FC<PatientAccountPageProps> = ({
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
                         {order.orderStatus === 'Awaiting Payment' && (
                           <button
                             type="button"

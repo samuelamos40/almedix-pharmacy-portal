@@ -82,8 +82,9 @@ function MainAppContent() {
 
   // Automatic redirect to home page when user signs out
   useEffect(() => {
-    if (!isInitializing && !isAuthenticated && currentPage === 'account') {
-      navigate('/');
+    if (!isInitializing && !isAuthenticated) {
+      if (currentPage === 'account') navigate('/');
+      setTrackingOrderNumber(''); // Clear any lingering tracking state on logout
     }
   }, [isAuthenticated, isInitializing, currentPage, navigate]);
 

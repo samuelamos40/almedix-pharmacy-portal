@@ -24,9 +24,20 @@ export const TrackOrderPage: React.FC<TrackOrderPageProps> = ({
     if (initialOrderNumber) {
       return orders.find(o => o.orderNumber.toLowerCase() === initialOrderNumber.toLowerCase()) || null;
     }
-    return orders[0] || null;
+    return null;
   });
   const [hasSearched, setHasSearched] = useState(false);
+
+  React.useEffect(() => {
+    if (initialOrderNumber) {
+      setSearchTerm(initialOrderNumber);
+      const found = orders.find(o => o.orderNumber.toLowerCase() === initialOrderNumber.toLowerCase());
+      setSearchedOrder(found || null);
+    } else {
+      setSearchTerm('');
+      setSearchedOrder(null);
+    }
+  }, [initialOrderNumber, orders]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
