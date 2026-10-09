@@ -97,6 +97,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
+  // Security Feature: Auto-logout after 15 minutes of inactivity
+  useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const handleInactivity = async () => {
+      await supabase.auth.signOut();
+      setUser(null);
+      alert("For security and HIPAA compliance, you have been automatically logged out due to 15 minutes of inactivity.");
+      window.location.href = '/';
+    };
+
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      if (user) {
+        // 15 minutes = 900,000 milliseconds
+        timeoutId = setTimeout(handleInactivity, 900000);
+      }
+    };
+
+    if (user) {
+      resetTimer();
+      window.addEventListener('mousemove', resetTimer);
+      window.addEventListener('keydown', resetTimer);
+      window.addEventListener('click', resetTimer);
+      window.addEventListener('scroll', resetTimer);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('mousemove', resetTimer);
+      window.removeEventListener('keydown', resetTimer);
+      window.removeEventListener('click', resetTimer);
+      window.removeEventListener('scroll', resetTimer);
+    };
+  }, [user]);
+
   const extractProfileFromUser = (supabaseUser: any): UserProfile => {
     const meta = supabaseUser.user_metadata || {};
     return {
