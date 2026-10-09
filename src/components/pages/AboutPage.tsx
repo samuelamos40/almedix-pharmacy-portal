@@ -170,6 +170,10 @@ export const AboutPage: React.FC = () => {
                   <Phone className="w-5 h-5 text-blue-600 shrink-0" />
                   <span className="font-medium">09066666814</span>
                 </p>
+                <p className="text-base text-slate-600 flex items-center gap-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-blue-600 shrink-0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <a href="mailto:support@almedixnigeria.com" className="font-medium hover:text-blue-700 transition-colors">support@almedixnigeria.com</a>
+                </p>
               </div>
               <div className="pt-2">
                 <p className="text-sm text-blue-900 font-bold bg-blue-50 p-3 rounded-lg text-center border border-blue-100 uppercase tracking-wide">
